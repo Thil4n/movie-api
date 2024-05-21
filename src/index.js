@@ -1,12 +1,10 @@
 const express = require("express");
 const cors = require("cors");
-const fileUpload = require("express-fileupload");
 
 const server = require("./config/server");
 const db = require("./config/db");
 
-const movieRouter = require("./router/movieRouter");
-const actorRouter = require("./router/actorRouter");
+const todoRouter = require("./routers/todoRouter");
 
 const app = express();
 
@@ -25,15 +23,12 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.use(express.json());
-app.use(fileUpload());
-
-app.use("/movie", movieRouter);
-app.use("/actor", actorRouter);
 
 app.use("/public", express.static(__dirname + "/public"));
+app.use("/todo", todoRouter);
 
-app.use("/", (req, res) => {
-    res.status(200).json({ message: "api end point" });
+app.all("/", (req, res) => {
+    res.status(200).send("api end point");
 });
 
 app.listen(server.port, () => {
