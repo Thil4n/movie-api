@@ -4,7 +4,9 @@ const cors = require("cors");
 const server = require("./config/server");
 const db = require("./config/db");
 
-const todoRouter = require("./routers/todoRouter");
+const propertyRouter = require("./routers/propertyRouter");
+const userRouter = require("./routers/userRouter");
+const adminRouter = require("./routers/adminRouter");
 
 const app = express();
 
@@ -25,7 +27,10 @@ app.use(cors(corsOptions));
 app.use(express.json());
 
 app.use("/public", express.static(__dirname + "/public"));
-app.use("/todo", todoRouter);
+app.use("/property", propertyRouter);
+
+app.use("/user", userRouter);
+app.use("/admin", adminRouter);
 
 app.all("/", (req, res) => {
     res.status(200).send("api end point");

@@ -9,7 +9,7 @@ const MONGO_HOST = process.env.MONGO_HOST;
 
 //const mongoUrl = `mongodb+srv://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_HOST}`;
 
-const mongoUrl = "mongodb://localhost:27017/aphrodite";
+const mongoUrl = "mongodb://localhost:27017/digideeds";
 
 const db = async () => {
     try {
